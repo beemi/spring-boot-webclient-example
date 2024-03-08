@@ -1,8 +1,6 @@
 package com.jaitechltd.webclientsspringbootexample.webclient;
 
-import com.jaitechltd.webclientsspringbootexample.dto.postcode.LatLongResponseDto;
 import com.jaitechltd.webclientsspringbootexample.dto.postcode.LocationResponseDto;
-import com.jaitechltd.webclientsspringbootexample.dto.postcode.ResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
