@@ -1,0 +1,74 @@
+#########################
+#### common settings ####
+#########################
+spring:
+  application:
+    name: "webclients-spring-boot-example-service"
+
+#####################
+#### Swagger doc ####
+#####################
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+server:
+  port: 8090
+
+#####################
+#### Actuator properties ####
+#####################
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - httptrace
+          - info
+          - health
+          - prometheus
+          - refresh
+          - metrics
+          - configprops
+      base-path: /actuator
+  endpoint:
+    restart:
+      enabled: true
+    refresh:
+      enabled: true
+    health:
+      show-details: always
+
+#####################
+#### Local profile ####
+#####################
+---
+spring:
+  profiles:
+    active: local
+
+starwars:
+  api:
+    base-url: https://swapi-graphql.netlify.app
+
+postcodeIo:
+  api:
+    url: https://api.postcodes.io
+
+#####################
+#### Dev profile ####
+#####################
+---
+spring:
+  profiles:
+    active: dev
+
+starwars:
+  api:
+    url: https://swapi-graphql.netlify.app
+
+postcodeIo:
+  api:
+    base-url: https://api.postcodes.io
