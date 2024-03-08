@@ -30,7 +30,7 @@ public class WebClientConfig {
 
         return WebClient.builder()
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultHeader("X-Api-Key", postcodeIoApiToken)
+                .defaultHeader("X-API-KEY", postcodeIoApiToken)
                 .filter(logRequest())
                 .filter(logResponse())
                 .exchangeStrategies(exchangeStrategies)
