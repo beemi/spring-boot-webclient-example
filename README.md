@@ -9,6 +9,30 @@ This is a simple Spring Boot service that utilizes WebClient to call external AP
 - 🐘 Spring Boot
 - 📬 Postman
 
+### Run the Application Locally
+
+```shell
+./mvnw spring-boot:run -Dspring-boot.run.profiles=local
+```
+
+The application will be available at [http://localhost:8090](http://localhost:8090).
+
+### 📦 Create Jar File
+
+```shell
+./mvnw clean package -DskipTests
+```
+
+_Note: If you want to set custom version, use `-Drevision=1.0.0`_
+Example:
+```shell
+./mvnw --batch-mode versions:set -DskipTests \
+  -DnewVersion=1.0.0 \
+  -DprocessAllModules \
+  -DgenerateBackupPoms=false
+```
+
+
 ## :book: WebClient Configuration
 
 This configuration class (`WebClientConfig`) sets up instances of WebClient to interact with external APIs. It provides methods to create WebClient instances for different services, such as Star Wars API and Postcode.io API.
