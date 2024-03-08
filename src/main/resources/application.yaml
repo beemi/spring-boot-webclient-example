@@ -46,8 +46,9 @@ management:
 #####################
 ---
 spring:
-  profiles:
-    active: local
+  config:
+    activate:
+      on-profile: "local"
 
 starwars:
   api:
@@ -56,19 +57,22 @@ starwars:
 postcodeIo:
   api:
     url: https://api.postcodes.io
+    token: "test1234"
 
 #####################
 #### Dev profile ####
 #####################
 ---
 spring:
-  profiles:
-    active: dev
+  config:
+    activate:
+      on-profile: "dev"
 
 starwars:
   api:
-    url: https://swapi-graphql.netlify.app
+    base-url: https://swapi-graphql.netlify.app
 
 postcodeIo:
   api:
-    base-url: https://api.postcodes.io
+    url: https://api.postcodes.io
+    token: "${POSTCODE_IO_TOKEN}"

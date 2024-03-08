@@ -20,6 +20,8 @@ public class WebClientConfig {
     private String starWarsApiUrl;
     @Value("${postcodeIo.api.url}")
     private String postcodeIoApiUrl;
+    @Value("${postcodeIo.api.token}")
+    private String postcodeIoApiToken;
 
     @Bean("postcodeIoWebClient")
     public WebClient postcodeIoWebClient() {
@@ -28,6 +30,7 @@ public class WebClientConfig {
 
         return WebClient.builder()
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .defaultHeader("X-Api-Key", postcodeIoApiToken)
                 .filter(logRequest())
                 .filter(logResponse())
                 .exchangeStrategies(exchangeStrategies)
