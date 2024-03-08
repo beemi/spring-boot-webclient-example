@@ -1,6 +1,7 @@
 package com.jaitechltd.webclientsspringbootexample.webclient;
 
 import com.jaitechltd.webclientsspringbootexample.dto.postcode.LocationResponseDto;
+import com.jaitechltd.webclientsspringbootexample.dto.postcode.LocationResponseNewDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -21,16 +22,16 @@ public class PostcodeIoClient {
      * Get lat long from Postcode.io
      *
      * @param postcode postcode to get lat long for
-     * @return LatLongResponseDto see {@link LatLongResponseDto}
+     * @return LatLongResponseDto see {@link LocationResponseNewDto}
      */
-    public LocationResponseDto getLatLong(final String postcode) {
+    public LocationResponseNewDto getLatLong(final String postcode) {
         log.info("Calling Postcode.io external API to get lat long for postcode: {}", postcode);
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/postcodes/" + postcode).build())
                 .retrieve()
                 .onStatus(httpStatus -> httpStatus.is4xxClientError() || httpStatus.is5xxServerError(),
                         clientResponse -> Mono.error(new RuntimeException("Error from Postcode.io API")))
-                .bodyToMono(LocationResponseDto.class)
+                .bodyToMono(LocationResponseNewDto.class)
                 .doOnNext(ResponseDto -> log.info("Response from Postcode.io API: {}", ResponseDto))
                 .block();
     }
