@@ -20,12 +20,14 @@ public class ControllerErrorAdvice {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage()));
     }
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler({
+            Exception.class,
+            RuntimeException.class
+    })
     public ResponseEntity<ErrorResponse> handleException(final Exception ex) {
         log.error("An error occurred while processing the request: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage()));
     }
 
-    public record ErrorResponse(HttpStatus status, String message) {
-    }
+    public record ErrorResponse(HttpStatus status, String message) {}
 }

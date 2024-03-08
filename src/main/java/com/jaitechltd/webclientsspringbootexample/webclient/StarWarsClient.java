@@ -7,6 +7,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.jaitechltd.webclientsspringbootexample.utils.GraphQLQueryLoader.loadQueryFromFile;
+
 @Slf4j
 @Component
 public class StarWarsClient {
@@ -17,22 +23,29 @@ public class StarWarsClient {
         this.webClient = webClient;
     }
 
-    // Define the GraphQL query as a separate method
-    private String buildGraphQLQuery() {
-        return "{\n" +
-                "  \"query\": \"{\\n  allFilms {\\n    films {\\n      title\\n      director\\n      releaseDate\\n      speciesConnection {\\n        species {\\n          name\\n          classification\\n          homeworld {\\n            name\\n          }\\n        }\\n      }\\n    }\\n  }\\n}\"\n" +
-                "}";
-    }
-
+    /**
+     * Get all films from Star Wars API using GraphQL
+     *
+     * @return FilmResponseDto see {@link FilmResponseDto}
+     */
     public FilmResponseDto getAllFilms() {
-        final String query = buildGraphQLQuery();
+        String query;
+        try {
+            query = loadQueryFromFile("graphqlQuerys/all-films-query.graphql");
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load GraphQL query from file", e);
+        }
+
+        Map<String, Object> variables = new HashMap<>();
+        //TODO: Add variables if needed
+
         log.info("Calling Star Wars external API to get all films wth query: {}", query);
         return webClient.post()
                 .uri(urlBuilder -> urlBuilder.path("/.netlify/functions/index").build())
-                .bodyValue(query)
+                .body(Mono.just(Map.of("query", query, "variables", variables)), Map.class)
                 .retrieve()
                 .onStatus(httpStatus -> httpStatus.is4xxClientError() || httpStatus.is5xxServerError(),
-                        clientResponse -> Mono.error(new RuntimeException("Error from Star Wars API")))
+                        clientResponse -> Mono.error(new RuntimeException("Error from external Star Wars API " + clientResponse.statusCode())))
                 .bodyToMono(FilmResponseDto.class)
                 .doOnNext(response -> log.info("Response from Star Wars API: {}", response))
                 .block();
