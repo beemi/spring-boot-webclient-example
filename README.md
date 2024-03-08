@@ -32,6 +32,12 @@ Example:
   -DgenerateBackupPoms=false
 ```
 
+Run the jar file:
+
+```shell
+java -jar target/webclients-spring-boot-example-0.0.1-SNAPSHOT.jar --spring.profiles.active=local
+```
+
 
 ## :book: WebClient Configuration
 
