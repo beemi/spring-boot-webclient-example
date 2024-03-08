@@ -1,7 +1,7 @@
 package com.jaitechltd.webclientsspringbootexample.service;
 
 
-import com.jaitechltd.webclientsspringbootexample.dto.postcode.ResponseDto;
+import com.jaitechltd.webclientsspringbootexample.dto.postcode.LocationResponseDto;
 import com.jaitechltd.webclientsspringbootexample.webclient.PostcodeIoClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ public class PostcodeIoService {
         this.postcodeIoClient = postcodeIoClient;
     }
 
-    public ResponseDto getLatLong(final String postcode) {
+    public LocationResponseDto getLatLong(final String postcode) {
         log.info("Calling Postcode.io external API to get lat long for postcode: {}", postcode);
         return postcodeIoClient.getLatLong(postcode);
     }
