@@ -76,3 +76,21 @@ postcodeIo:
   api:
     url: https://api.postcodes.io
     token: "${POSTCODE_IO_TOKEN}"
+
+#####################
+#### Prod profile ####
+#####################
+---
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+
+starwars:
+  api:
+    base-url: https://swapi-graphql.netlify.app
+
+postcodeIo:
+  api:
+    url: https://api.postcodes.io
+    token: "${POSTCODE_IO_TOKEN}"
