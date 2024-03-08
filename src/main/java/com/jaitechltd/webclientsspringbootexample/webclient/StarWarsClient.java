@@ -1,6 +1,6 @@
 package com.jaitechltd.webclientsspringbootexample.webclient;
 
-import com.jaitechltd.webclientsspringbootexample.dto.Response;
+import com.jaitechltd.webclientsspringbootexample.dto.netify.FilmResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ public class StarWarsClient {
                 "}";
     }
 
-    public Response getAllFilms() {
+    public FilmResponseDto getAllFilms() {
         final String query = buildGraphQLQuery();
         log.info("Calling Star Wars external API to get all films wth query: {}", query);
         return webClient.post()
@@ -33,7 +33,7 @@ public class StarWarsClient {
                 .retrieve()
                 .onStatus(httpStatus -> httpStatus.is4xxClientError() || httpStatus.is5xxServerError(),
                         clientResponse -> Mono.error(new RuntimeException("Error from Star Wars API")))
-                .bodyToMono(Response.class)
+                .bodyToMono(FilmResponseDto.class)
                 .doOnNext(response -> log.info("Response from Star Wars API: {}", response))
                 .block();
     }
