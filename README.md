@@ -1,6 +1,6 @@
-# Spring boot WebClient example
+# Spring Boot WebClient Example 🚀
 
-This is a simple Spring boot service that uses WebClient to call an external API and return the response.
+This is a simple Spring Boot service that utilizes WebClient to call external APIs and return the responses.
 
 ## 📋 Requirements
 
@@ -11,8 +11,7 @@ This is a simple Spring boot service that uses WebClient to call an external API
 
 ## :book: WebClient Configuration
 
-This configuration class (`WebClientConfig`) sets up instances of WebClient to interact with external APIs. It provides
-methods to create WebClient instances for different services, such as Star Wars API and Postcode.io API.
+This configuration class (`WebClientConfig`) sets up instances of WebClient to interact with external APIs. It provides methods to create WebClient instances for different services, such as Star Wars API and Postcode.io API.
 
 ### Configuration Properties
 
@@ -39,9 +38,7 @@ This bean creates a WebClient instance configured to interact with the Star Wars
 
 ### Logging
 
-The logging filters in this configuration class log the details of outgoing requests and incoming responses at INFO
-level, providing insights into the interactions with external APIs. This aids in troubleshooting and monitoring API
-calls.
+The logging filters in this configuration class log the details of outgoing requests and incoming responses at INFO level, providing insights into the interactions with external APIs. This aids in troubleshooting and monitoring API calls.
 
 ### Usage
 
@@ -65,8 +62,8 @@ Then, you can use these WebClient instances to make requests to the respective A
 
 - Swagger UI: [http://localhost:8090/swagger-ui/index.html](http://localhost:8090/swagger-ui/index.html)
 
-### Actuator info endpoint :thumbsup:
+### Actuator Info Endpoint :thumbsup:
 
-Actuator health endpoint
+Actuator health endpoint:
 
-http://localhost:8090/actuator/health
+- [http://localhost:8090/actuator/health](http://localhost:8090/actuator/health)
