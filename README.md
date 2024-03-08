@@ -11,7 +11,8 @@ This is a simple Spring boot service that uses WebClient to call an external API
 
 ## :book: WebClient Configuration
 
-This configuration class (`WebClientConfig`) sets up instances of WebClient to interact with external APIs. It provides methods to create WebClient instances for different services, such as Star Wars API and Postcode.io API.
+This configuration class (`WebClientConfig`) sets up instances of WebClient to interact with external APIs. It provides
+methods to create WebClient instances for different services, such as Star Wars API and Postcode.io API.
 
 ### Configuration Properties
 
@@ -38,7 +39,9 @@ This bean creates a WebClient instance configured to interact with the Star Wars
 
 ### Logging
 
-The logging filters in this configuration class log the details of outgoing requests and incoming responses at INFO level, providing insights into the interactions with external APIs. This aids in troubleshooting and monitoring API calls.
+The logging filters in this configuration class log the details of outgoing requests and incoming responses at INFO
+level, providing insights into the interactions with external APIs. This aids in troubleshooting and monitoring API
+calls.
 
 ### Usage
 

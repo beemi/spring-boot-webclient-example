@@ -29,5 +29,6 @@ public class ControllerErrorAdvice {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage()));
     }
 
-    public record ErrorResponse(HttpStatus status, String message) {}
+    public record ErrorResponse(HttpStatus status, String message) {
+    }
 }

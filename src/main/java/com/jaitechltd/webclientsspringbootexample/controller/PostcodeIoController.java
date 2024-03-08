@@ -1,7 +1,6 @@
 package com.jaitechltd.webclientsspringbootexample.controller;
 
 
-import com.jaitechltd.webclientsspringbootexample.dto.postcode.LocationResponseDto;
 import com.jaitechltd.webclientsspringbootexample.dto.postcode.LocationResponseNewDto;
 import com.jaitechltd.webclientsspringbootexample.service.PostcodeIoService;
 import io.swagger.v3.oas.annotations.Operation;

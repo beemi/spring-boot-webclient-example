@@ -1,7 +1,5 @@
 package com.jaitechltd.webclientsspringbootexample.service;
 
-
-import com.jaitechltd.webclientsspringbootexample.dto.postcode.LocationResponseDto;
 import com.jaitechltd.webclientsspringbootexample.dto.postcode.LocationResponseNewDto;
 import com.jaitechltd.webclientsspringbootexample.webclient.PostcodeIoClient;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,5 @@
 package com.jaitechltd.webclientsspringbootexample.webclient;
 
-import com.jaitechltd.webclientsspringbootexample.dto.postcode.LocationResponseDto;
 import com.jaitechltd.webclientsspringbootexample.dto.postcode.LocationResponseNewDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;

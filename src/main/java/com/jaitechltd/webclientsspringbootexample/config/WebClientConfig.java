@@ -15,13 +15,11 @@ import reactor.core.publisher.Mono;
 @Configuration
 public class WebClientConfig {
 
+    public static final int BYTE_COUNT = 1024 * 1024 * 16;
     @Value("${starwars.api.base-url}")
     private String starWarsApiUrl;
-
     @Value("${postcodeIo.api.url}")
     private String postcodeIoApiUrl;
-
-    public static final int BYTE_COUNT = 1024 * 1024 * 16;
 
     @Bean("postcodeIoWebClient")
     public WebClient postcodeIoWebClient() {
