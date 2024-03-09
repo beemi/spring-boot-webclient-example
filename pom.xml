@@ -93,4 +93,20 @@
         </plugins>
     </build>
 
+    <developers>
+        <developer>
+            <name>Raj B</name>
+            <email>beemi.raja@gmail.com</email>
+            <organization>Jaitech Ltd</organization>
+        </developer>
+    </developers>
+
+    <repositories>
+        <repository>
+            <id>spring-boot-webclient-example</id>
+            <name>spring-boot-webclient-example</name>
+            <url>git@github.com:beemi/spring-boot-webclient-example.git</url>
+        </repository>
+    </repositories>
+
 </project>
