@@ -7,9 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class PostCodeIoValidator {
 
-    private final String POST_CODE_REGEX = "^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$";
-
-
     /**
      * Write a method to validate the given post code in UK format.
      *
@@ -18,6 +15,7 @@ public class PostCodeIoValidator {
      */
     public boolean validatePostCode(final String postCode) {
         log.info("Validating post code: {}", postCode);
+        final String POST_CODE_REGEX = "^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$";
         return postCode.matches(POST_CODE_REGEX);
     }
 }
