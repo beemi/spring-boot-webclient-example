@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @Slf4j
 public class ControllerErrorAdvice {
 
-    @ExceptionHandler({
-            PostCodeFormatException.class
-    })
+    @ExceptionHandler(PostCodeFormatException.class)
     public ResponseEntity<ErrorResponse> handlePostCodeFormatException(final PostCodeFormatException ex) {
         log.warn("Invalid post code: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage()));
