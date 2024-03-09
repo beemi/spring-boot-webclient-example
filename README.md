@@ -22,6 +22,9 @@ The application will be available at [http://localhost:8090](http://localhost:80
 ```shell
 ./mvnw clean package -DskipTests
 ```
+```Bash
+./mvnw clean install -Dspring-boot.run.profiles=local
+```
 
 _Note: If you want to set custom version, use `-Drevision=1.0.0`_
 Example:
