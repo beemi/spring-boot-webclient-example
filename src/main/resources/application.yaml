@@ -32,14 +32,12 @@ management:
           - refresh
           - metrics
           - configprops
-      base-path: /actuator
+      base-path: /mgmt/actuator
   endpoint:
-    restart:
-      enabled: true
-    refresh:
-      enabled: true
     health:
       show-details: always
+      probes:
+        enabled: true
 
 #####################
 #### Local profile ####

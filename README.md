@@ -97,6 +97,10 @@ Then, you can use these WebClient instances to make requests to the respective A
 
 ### Actuator Info Endpoint :thumbsup:
 
-Actuator health endpoint:
+Expose management endpoints to monitor and manage your application:
 
-- [http://localhost:8090/actuator/health](http://localhost:8090/actuator/health)
+- [Actuator Info](http://localhost:8090/mgmt/actuator)
+- [Health](http://localhost:8090/mgmt/actuator/health)
+- [Liveness](http://localhost:8090/mgmt/actuator/health/liveness)
+- [Readiness](http://localhost:8090/mgmt/actuator/health/readiness)
+- [Prometheus](http://localhost:8090/mgmt/actuator/prometheus)
