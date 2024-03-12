@@ -16,7 +16,7 @@ public class ControllerErrorAdvice {
 
     @ExceptionHandler(PostCodeFormatException.class)
     public ResponseEntity<ErrorResponse> handlePostCodeFormatException(final PostCodeFormatException ex) {
-        log.warn("Invalid post code: {}", ex.getMessage());
+        log.error("Invalid post code: {} is not a valid UK post code", ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(HttpStatus.BAD_REQUEST, List.of(ex.getMessage())));
     }
 
@@ -24,7 +24,7 @@ public class ControllerErrorAdvice {
             BadRequestException.class
     })
     public ResponseEntity<ErrorResponse> handleBadRequestException(final BadRequestException ex) {
-        log.warn("Invalid request: {}", ex.getMessage());
+        log.error("Invalid request: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(HttpStatus.BAD_REQUEST, List.of(ex.getMessage())));
     }
 

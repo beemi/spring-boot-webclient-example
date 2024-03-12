@@ -25,7 +25,7 @@
     <logger name="io.netty.resolver.dns" level="DEBUG"/>
 
     <!-- Setting the root log level to INFO -->
-    <root level="INFO">
+    <root level="DEBUG">
         <appender-ref ref="CONSOLE"/>
     </root>
 </configuration>

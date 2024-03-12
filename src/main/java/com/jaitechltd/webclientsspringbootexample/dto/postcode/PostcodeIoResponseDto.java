@@ -1,13 +1,22 @@
 package com.jaitechltd.webclientsspringbootexample.dto.postcode;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class LocationResponseDto {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class PostcodeIoResponseDto {
     private Result result;
     private int status;
 
     @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class Result {
         private String country;
         private Codes codes;

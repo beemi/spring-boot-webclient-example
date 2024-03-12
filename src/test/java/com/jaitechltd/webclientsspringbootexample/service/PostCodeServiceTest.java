@@ -1,7 +1,9 @@
 package com.jaitechltd.webclientsspringbootexample.service;
 
 import com.jaitechltd.webclientsspringbootexample.dto.postcode.LocationResponseNewDto;
+import com.jaitechltd.webclientsspringbootexample.dto.postcode.PostcodeIoResponseDto;
 import com.jaitechltd.webclientsspringbootexample.exception.PostCodeFormatException;
+import com.jaitechltd.webclientsspringbootexample.mappers.PostcodeResponseConverter;
 import com.jaitechltd.webclientsspringbootexample.validator.PostCodeIoValidator;
 import com.jaitechltd.webclientsspringbootexample.webclient.PostcodeIoClient;
 import org.junit.jupiter.api.Assertions;
@@ -30,12 +32,15 @@ public class PostCodeServiceTest {
     @Mock
     PostCodeIoValidator postCodeIoValidator;
 
+    @Mock
+    PostcodeResponseConverter postCodeResponseConverter;
+
     @InjectMocks
     PostcodeIoService postcodeIoService;
 
     @BeforeEach
     void setUp() {
-        postcodeIoService = new PostcodeIoService(postcodeIoClient, postCodeIoValidator);
+        postcodeIoService = new PostcodeIoService(postcodeIoClient, postCodeIoValidator, postCodeResponseConverter);
     }
 
     @Test
@@ -43,29 +48,36 @@ public class PostCodeServiceTest {
     void getLatLong_ValidPostcode_ReturnsLocation() {
         // Arrange
         final String validPostcode = "RM17 6EY";
-        final var expectedResponse = LocationResponseNewDto.builder()
-                .result(LocationResponseNewDto.Result.builder()
+        final var postcodeIoResponse = PostcodeIoResponseDto.builder()
+                .result(PostcodeIoResponseDto.Result.builder()
                         .country("England")
                         .latitude(51.501009)
-                        .postcode("RM17 6EY")
+                        .postcode(validPostcode)
                         .longitude(-0.141588)
                         .build());
+        final var expectedResponse = LocationResponseNewDto.builder()
+                        .country("England")
+                        .latitude(51.501009)
+                        .postcode(validPostcode)
+                        .longitude(-0.141588)
+                        .build();
 
         when(postCodeIoValidator.validatePostCode(validPostcode)).thenReturn(true);
-        when(postcodeIoClient.getLatLong(validPostcode)).thenReturn(expectedResponse.build());
+        when(postcodeIoClient.getLatLong(validPostcode)).thenReturn(postcodeIoResponse.build());
+        when(postCodeResponseConverter.convertToLocationResponseNewDto(postcodeIoResponse.build())).thenReturn(expectedResponse);
 
         // Act
         LocationResponseNewDto actualResponse = postcodeIoService.getLatLong(validPostcode);
 
         // Assert
-        Assertions.assertEquals(expectedResponse.build(), actualResponse);
-        Assertions.assertEquals(expectedResponse.build().getResult().getCountry(), actualResponse.getResult().getCountry());
+        Assertions.assertEquals(expectedResponse, actualResponse);
+        Assertions.assertEquals(expectedResponse.getCountry(), actualResponse.getCountry());
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"RM176EY", "INVALID", "RM17 6EY "})
     @DisplayName("Given an invalid postcode {0}, when getLatLong is called, then it should throw PostCodeFormatException")
-    void getLatLong_InvalidPostcode_ThrowsPostCodeFormatException(final String invalidPostcode) throws PostCodeFormatException{
+    void getLatLong_InvalidPostcode_ThrowsPostCodeFormatException(final String invalidPostcode) throws PostCodeFormatException {
         // Arrange
         when(postCodeIoValidator.validatePostCode(invalidPostcode)).thenReturn(false);
 

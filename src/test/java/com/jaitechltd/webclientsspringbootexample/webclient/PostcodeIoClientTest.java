@@ -1,6 +1,6 @@
 package com.jaitechltd.webclientsspringbootexample.webclient;
 
-import com.jaitechltd.webclientsspringbootexample.dto.postcode.LocationResponseNewDto;
+import com.jaitechltd.webclientsspringbootexample.dto.postcode.PostcodeIoResponseDto;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.jupiter.api.AfterAll;
@@ -14,7 +14,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
@@ -57,12 +58,12 @@ public class PostcodeIoClientTest {
                 .setResponseCode(200)
                 .setBody(sampleResponse));
 
-        LocationResponseNewDto locationResponseNewDto = postcodeIoClient.getLatLong(postcode);
-        assert locationResponseNewDto != null;
+        PostcodeIoResponseDto postcodeIoResponseDto = postcodeIoClient.getLatLong(postcode);
+        assert postcodeIoResponseDto != null;
 
-        assertEquals("England", locationResponseNewDto.getResult().getCountry());
-        assertEquals(51.476936, locationResponseNewDto.getResult().getLatitude());
-        assertEquals("RM17 6EY", locationResponseNewDto.getResult().getPostcode());
+        assertEquals("England", postcodeIoResponseDto.getResult().getCountry());
+        assertEquals(51.476936, postcodeIoResponseDto.getResult().getLatitude());
+        assertEquals("RM17 6EY", postcodeIoResponseDto.getResult().getPostcode());
     }
 
     @Test

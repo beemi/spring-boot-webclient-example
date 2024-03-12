@@ -28,6 +28,7 @@ public class PostcodeIoController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK", content = @io.swagger.v3.oas.annotations.media.Content(schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = LocationResponseNewDto.class))),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "Bad Request")})
     public ResponseEntity<?> getLatLong(@RequestParam("postcode") final String postCode) {
+        log.info("Received request to get lat long for postcode: {}", postCode);
         return ResponseEntity.ok(postcodeIoService.getLatLong(postCode));
     }
 }
