@@ -106,7 +106,7 @@ Then, you can use these WebClient instances to make requests to the respective A
 
 [![Swagger API Documentation](https://img.shields.io/badge/Swagger-UI-85EA2D?style=for-the-badge&logo=swagger)](http://localhost:8090/swagger-ui.html)
 
-[![OpenAPI Docs](https://img.shields.io/badge/OpenAPI-Docs-85EA2D?style=for-the-badge&logo=swagger)](http://localhost:8090/v3/api-docs) 
+[![OpenAPI Docs](https://img.shields.io/badge/OpenAPI-Docs-85EA2D?style=for-the-badge&logo=swagger)](http://localhost:8090/v3/api-docs)
 
 ### Actuator Info Endpoint :thumbsup:
 
@@ -118,6 +118,6 @@ Expose management endpoints to monitor and manage your application:
 - [Readiness](http://localhost:8090/mgmt/actuator/health/readiness)
 - [Prometheus](http://localhost:8090/mgmt/actuator/prometheus)
 
-###  Contact Information 📧
+### Contact Information 📧
 
 If you have any questions, please feel free to reach out to me at [beemi.raja@gmail.com](beemi.raja@gmail.com)
