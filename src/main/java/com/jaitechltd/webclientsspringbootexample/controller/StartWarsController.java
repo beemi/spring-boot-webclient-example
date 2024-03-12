@@ -1,6 +1,7 @@
 package com.jaitechltd.webclientsspringbootexample.controller;
 
 import com.jaitechltd.webclientsspringbootexample.service.StarWarsService;
+import io.micrometer.core.annotation.Timed;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -31,6 +32,7 @@ public class StartWarsController {
             ),
                     required = true, description = "GraphQL query to get all films"),
             operationId = "getAllFilms", responses = {@io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "Films found")})
+    @Timed(histogram = true)
     public ResponseEntity<?> getAllFilms() {
         log.info("Getting all films ...");
         return ResponseEntity.ok(starWarsService.getAllFilms());

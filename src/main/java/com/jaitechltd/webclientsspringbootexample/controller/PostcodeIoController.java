@@ -3,6 +3,7 @@ package com.jaitechltd.webclientsspringbootexample.controller;
 
 import com.jaitechltd.webclientsspringbootexample.dto.postcode.LocationResponseNewDto;
 import com.jaitechltd.webclientsspringbootexample.service.PostcodeIoService;
+import io.micrometer.core.annotation.Timed;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,7 @@ public class PostcodeIoController {
             , operationId = "getLatLong", responses = {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK", content = @io.swagger.v3.oas.annotations.media.Content(schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = LocationResponseNewDto.class))),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "Bad Request")})
+    @Timed(histogram = true)
     public ResponseEntity<?> getLatLong(@RequestParam("postcode") final String postCode) {
         log.info("Received request to get lat long for postcode: {}", postCode);
         return ResponseEntity.ok(postcodeIoService.getLatLong(postCode));

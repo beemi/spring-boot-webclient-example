@@ -2,6 +2,7 @@ package com.jaitechltd.webclientsspringbootexample.webclient;
 
 import com.jaitechltd.webclientsspringbootexample.dto.postcode.PostcodeIoResponseDto;
 import com.jaitechltd.webclientsspringbootexample.dto.postcode.LocationResponseNewDto;
+import io.micrometer.core.annotation.Timed;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,7 @@ public class PostcodeIoClient {
      * @param postcode postcode to get lat long for
      * @return LatLongResponseDto see {@link LocationResponseNewDto}
      */
+    @Timed(histogram = true)
     public PostcodeIoResponseDto getLatLong(final String postcode) {
         log.info("Calling postcode.io external API to get lat long for postcode: {}", postcode);
         return webClient.get()

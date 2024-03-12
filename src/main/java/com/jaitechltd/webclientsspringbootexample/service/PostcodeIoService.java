@@ -5,6 +5,7 @@ import com.jaitechltd.webclientsspringbootexample.exception.PostCodeFormatExcept
 import com.jaitechltd.webclientsspringbootexample.mappers.PostcodeResponseConverter;
 import com.jaitechltd.webclientsspringbootexample.validator.PostCodeIoValidator;
 import com.jaitechltd.webclientsspringbootexample.webclient.PostcodeIoClient;
+import io.micrometer.core.annotation.Timed;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,7 @@ public class PostcodeIoService {
      * @param postcode post code to get lat long for
      * @return LatLongResponseDto see {@link LocationResponseNewDto}
      */
+    @Timed(histogram = true)
     public LocationResponseNewDto getLatLong(final String postcode) {
         log.info("Calling service to get lat long for postcode: {}", postcode);
         if (!postCodeIoValidator.validatePostCode(postcode)) {

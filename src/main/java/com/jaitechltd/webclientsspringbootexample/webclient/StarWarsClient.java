@@ -1,6 +1,7 @@
 package com.jaitechltd.webclientsspringbootexample.webclient;
 
 import com.jaitechltd.webclientsspringbootexample.dto.netify.FilmResponseDto;
+import io.micrometer.core.annotation.Timed;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -28,6 +29,7 @@ public class StarWarsClient {
      *
      * @return FilmResponseDto see {@link FilmResponseDto}
      */
+    @Timed(histogram = true)
     public FilmResponseDto getAllFilms() {
         String query;
         try {
