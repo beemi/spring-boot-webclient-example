@@ -1,5 +1,6 @@
 package com.jaitechltd.webclientsspringbootexample.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jaitechltd.webclientsspringbootexample.config.properties.ExternalApiProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +22,11 @@ public class WebClientConfig {
 
     public WebClientConfig(ExternalApiProperties externalApiProperties) {
         this.externalApiProperties = externalApiProperties;
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
     }
 
     @Bean("postcodeIoWebClient")

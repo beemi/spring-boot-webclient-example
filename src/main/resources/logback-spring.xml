@@ -20,12 +20,12 @@
         </encoder>
     </appender>
 
-    <logger name="org.springframework.web" level="DEBUG"/>
-    <logger name="com.jaitechltd" level="DEBUG"/>
-    <logger name="io.netty.resolver.dns" level="DEBUG"/>
+    <logger name="org.springframework.web" level="INFO"/>
+    <logger name="com.jaitechltd" level="INFO"/>
+    <logger name="io.netty.resolver.dns" level="ERROR"/>
 
     <!-- Setting the root log level to INFO -->
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="CONSOLE"/>
     </root>
 </configuration>

@@ -1,5 +1,6 @@
 package com.jaitechltd.webclientsspringbootexample.webclient;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jaitechltd.webclientsspringbootexample.dto.postcode.PostcodeIoResponseDto;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -26,6 +28,9 @@ public class PostcodeIoClientTest {
     private static MockWebServer mockWebServer;
     private static PostcodeIoClient postcodeIoClient;
 
+    @Mock
+    private ObjectMapper mapper;
+
     @BeforeAll
     public static void setUp() throws IOException {
         mockWebServer = new MockWebServer();
@@ -33,7 +38,7 @@ public class PostcodeIoClientTest {
         WebClient webClient = WebClient.builder()
                 .baseUrl(mockWebServer.url("/").toString()).build();
 
-        postcodeIoClient = new PostcodeIoClient(webClient);
+        postcodeIoClient = new PostcodeIoClient(webClient, new ObjectMapper());
     }
 
     @Test

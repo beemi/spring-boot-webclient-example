@@ -16,7 +16,7 @@ public class PostcodeResponseConverter {
      * @return LocationResponseNewDto see {@link LocationResponseNewDto}
      */
     public LocationResponseNewDto convertToLocationResponseNewDto(final PostcodeIoResponseDto locationResponseDto) {
-        log.info("Converting LocationResponseDto to LocationResponseNewDto");
+        log.info("Converting PostcodeIoResponseDto to LocationResponseNewDto ...");
         return LocationResponseNewDto.builder()
                 .country(locationResponseDto.getResult().getCountry())
                 .latitude(locationResponseDto.getResult().getLatitude())

@@ -37,7 +37,8 @@ public class PostcodeIoService {
             throw new PostCodeFormatException("Invalid post code format " + postcode);
         }
         final var locationResponseDto = postcodeIoClient.getLatLong(postcode);
-
-        return postCodeResponseConverter.convertToLocationResponseNewDto(locationResponseDto);
+        LocationResponseNewDto response = postCodeResponseConverter.convertToLocationResponseNewDto(locationResponseDto);
+        log.info("Service response for postcode {}: {}", postcode, response); // Consider logging summary or key info
+        return response;
     }
 }

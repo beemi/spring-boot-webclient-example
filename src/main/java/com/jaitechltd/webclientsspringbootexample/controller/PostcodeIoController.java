@@ -5,6 +5,9 @@ import com.jaitechltd.webclientsspringbootexample.dto.postcode.LocationResponseN
 import com.jaitechltd.webclientsspringbootexample.service.PostcodeIoService;
 import io.micrometer.core.annotation.Timed;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,13 +27,16 @@ public class PostcodeIoController {
     }
 
     @GetMapping("/getLatLong")
-    @Operation(summary = "Get lat long from postcode.io", description = "Get lat long from postcode.io", tags = {"postcode-io-service"}
-            , operationId = "getLatLong", responses = {
-            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK", content = @io.swagger.v3.oas.annotations.media.Content(schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = LocationResponseNewDto.class))),
-            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "Bad Request")})
+    @Operation(summary = "Get lat long from postcode.io", description = "Get lat long from postcode.io", tags = {"postcode-io-service"},
+            operationId = "getLatLong", responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = LocationResponseNewDto.class))),
+            @ApiResponse(responseCode = "400", description = "Bad Request")})
     @Timed(histogram = true)
     public ResponseEntity<?> getLatLong(@RequestParam("postcode") final String postCode) {
         log.info("Received request to get lat long for postcode: {}", postCode);
-        return ResponseEntity.ok(postcodeIoService.getLatLong(postCode));
+        LocationResponseNewDto responseDto = postcodeIoService.getLatLong(postCode);
+        log.info("Sending response to client for postcode: {}: {}", postCode, responseDto);
+        return ResponseEntity.ok(responseDto);
     }
+
 }
