@@ -22,12 +22,14 @@ The application will be available at [http://localhost:8090](http://localhost:80
 ```shell
 ./mvnw clean package -DskipTests
 ```
+
 ```Bash
 ./mvnw clean install -Dspring-boot.run.profiles=local
 ```
 
 _Note: If you want to set custom version, use `-Drevision=1.0.0`_
 Example:
+
 ```shell
 ./mvnw --batch-mode versions:set -DskipTests \
   -DnewVersion=1.0.0 \
@@ -41,10 +43,10 @@ Run the jar file:
 java -jar target/webclients-spring-boot-example-0.0.1-SNAPSHOT.jar --spring.profiles.active=local
 ```
 
-
 ## :book: WebClient Configuration
 
-This configuration class (`WebClientConfig`) sets up instances of WebClient to interact with external APIs. It provides methods to create WebClient instances for different services, such as Star Wars API and Postcode.io API.
+This configuration class (`WebClientConfig`) sets up instances of WebClient to interact with external APIs. It provides
+methods to create WebClient instances for different services, such as Star Wars API and Postcode.io API.
 
 ### Configuration Properties
 
@@ -71,13 +73,16 @@ This bean creates a WebClient instance configured to interact with the Star Wars
 
 ### Logging
 
-The logging filters in this configuration class log the details of outgoing requests and incoming responses at INFO level, providing insights into the interactions with external APIs. This aids in troubleshooting and monitoring API calls.
+The logging filters in this configuration class log the details of outgoing requests and incoming responses at INFO
+level, providing insights into the interactions with external APIs. This aids in troubleshooting and monitoring API
+calls.
 
 ### Usage
 
 To use these WebClient instances in your application, simply inject them as dependencies where needed. For example:
 
 ```java
+
 @Autowired
 @Qualifier("starWarsWebClient")
 private WebClient starWarsWebClient;

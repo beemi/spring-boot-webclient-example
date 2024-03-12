@@ -3,7 +3,6 @@ package com.jaitechltd.webclientsspringbootexample.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jaitechltd.webclientsspringbootexample.config.properties.ExternalApiProperties;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;

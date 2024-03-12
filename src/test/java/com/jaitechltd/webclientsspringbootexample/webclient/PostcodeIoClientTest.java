@@ -41,6 +41,11 @@ public class PostcodeIoClientTest {
         postcodeIoClient = new PostcodeIoClient(webClient, new ObjectMapper());
     }
 
+    @AfterAll
+    public static void tearDown() throws IOException {
+        mockWebServer.shutdown();
+    }
+
     @Test
     public void testGetLatLong_returnsLatLong() {
 
@@ -85,10 +90,5 @@ public class PostcodeIoClientTest {
         });
 
         assertTrue(exception.getMessage().contains("Error from Postcode.io API"));
-    }
-
-    @AfterAll
-    public static void tearDown() throws IOException {
-        mockWebServer.shutdown();
     }
 }

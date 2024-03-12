@@ -56,11 +56,11 @@ public class PostCodeServiceTest {
                         .longitude(-0.141588)
                         .build());
         final var expectedResponse = LocationResponseNewDto.builder()
-                        .country("England")
-                        .latitude(51.501009)
-                        .postcode(validPostcode)
-                        .longitude(-0.141588)
-                        .build();
+                .country("England")
+                .latitude(51.501009)
+                .postcode(validPostcode)
+                .longitude(-0.141588)
+                .build();
 
         when(postCodeIoValidator.validatePostCode(validPostcode)).thenReturn(true);
         when(postcodeIoClient.getLatLong(validPostcode)).thenReturn(postcodeIoResponse.build());
