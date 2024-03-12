@@ -2,6 +2,7 @@ package com.jaitechltd.webclientsspringbootexample.controller;
 
 
 import com.jaitechltd.webclientsspringbootexample.dto.postcode.LocationResponseNewDto;
+import com.jaitechltd.webclientsspringbootexample.exception.ControllerErrorAdvice;
 import com.jaitechltd.webclientsspringbootexample.service.PostcodeIoService;
 import io.micrometer.core.annotation.Timed;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,7 +31,8 @@ public class PostcodeIoController {
     @Operation(summary = "Get lat long from postcode.io", description = "Get lat long from postcode.io", tags = {"postcode-io-service"},
             operationId = "getLatLong", responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = LocationResponseNewDto.class))),
-            @ApiResponse(responseCode = "400", description = "Bad Request")})
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = ControllerErrorAdvice.ErrorResponse.class)))
+    })
     @Timed(histogram = true)
     public ResponseEntity<?> getLatLong(@RequestParam("postcode") final String postCode) {
         log.info("Received request to get lat long for postcode: {}", postCode);
