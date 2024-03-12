@@ -28,7 +28,7 @@ public class PostcodeIoController {
     }
 
     @GetMapping("/getLatLong")
-    @Operation(summary = "Get lat long from postcode.io", description = "Get lat long from postcode.io", tags = {"postcode-io-service"},
+    @Operation(summary = "Get lat long from postcode.io", description = "Get lat long from postcode.io", tags = {"Postcode API"},
             operationId = "getLatLong", responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = LocationResponseNewDto.class))),
             @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = ControllerErrorAdvice.ErrorResponse.class)))

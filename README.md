@@ -1,5 +1,11 @@
 # Spring Boot WebClient Example 🚀
 
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.5.5-6DB33F?style=for-the-badge&logo=spring)](https://spring.io/projects/spring-boot)
+[![Java](https://img.shields.io/badge/Java-17-ED8B00?style=for-the-badge&logo=java)](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html)
+[![Maven](https://img.shields.io/badge/Maven-3.8.2-C71A36?style=for-the-badge&logo=apache-maven)](https://maven.apache.org/download.cgi)
+[![Postman](https://img.shields.io/badge/Postman-7.36.5-FF6C) ](https://www.postman.com/downloads/)
+[![Swagger](https://img.shields.io/badge/Swagger-3.0-85EA2D?style=for-the-badge&logo=swagger)](https://swagger.io/)
+
 This is a simple Spring Boot service that utilizes WebClient to call external APIs and return the responses.
 
 ## 📋 Requirements
@@ -98,7 +104,9 @@ Then, you can use these WebClient instances to make requests to the respective A
 
 🔍 Access the OpenAPI documentation to explore and test the API endpoints:
 
-- Swagger UI: [http://localhost:8090/swagger-ui/index.html](http://localhost:8090/swagger-ui/index.html)
+[![Swagger API Documentation](https://img.shields.io/badge/Swagger-UI-85EA2D?style=for-the-badge&logo=swagger)](http://localhost:8090/swagger-ui.html)
+
+[![OpenAPI Docs](https://img.shields.io/badge/OpenAPI-Docs-85EA2D?style=for-the-badge&logo=swagger)](http://localhost:8090/v3/api-docs) 
 
 ### Actuator Info Endpoint :thumbsup:
 
@@ -109,3 +117,7 @@ Expose management endpoints to monitor and manage your application:
 - [Liveness](http://localhost:8090/mgmt/actuator/health/liveness)
 - [Readiness](http://localhost:8090/mgmt/actuator/health/readiness)
 - [Prometheus](http://localhost:8090/mgmt/actuator/prometheus)
+
+###  Contact Information 📧
+
+If you have any questions, please feel free to reach out to me at [beemi.raja@gmail.com](beemi.raja@gmail.com)
