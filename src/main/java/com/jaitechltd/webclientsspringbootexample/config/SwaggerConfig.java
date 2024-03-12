@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.context.annotation.Configuration;
 
+
 @OpenAPIDefinition(
         info = @Info(
                 title = "Webclients Spring Boot Example",

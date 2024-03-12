@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  mysql:
+    container_name: "webclient-mysql-service"
+    image: mysql:latest
+    hostname: "webclient-mysql-service"
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=webclient_springboot_example
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_USER=testUser
+      - MYSQL_PASSWORD=test123456
+    volumes:
+      - "data:/var/lib/mysql"
+volumes:
+  data:

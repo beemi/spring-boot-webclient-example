@@ -4,6 +4,7 @@ import com.jaitechltd.webclientsspringbootexample.dto.postcode.LocationResponseN
 import com.jaitechltd.webclientsspringbootexample.dto.postcode.PostcodeIoResponseDto;
 import com.jaitechltd.webclientsspringbootexample.exception.PostCodeFormatException;
 import com.jaitechltd.webclientsspringbootexample.mappers.PostcodeResponseConverter;
+import com.jaitechltd.webclientsspringbootexample.repository.PostCodeIoRepository;
 import com.jaitechltd.webclientsspringbootexample.validator.PostCodeIoValidator;
 import com.jaitechltd.webclientsspringbootexample.webclient.PostcodeIoClient;
 import org.junit.jupiter.api.Assertions;
@@ -35,12 +36,15 @@ public class PostCodeServiceTest {
     @Mock
     PostcodeResponseConverter postCodeResponseConverter;
 
+    @Mock
+    PostCodeIoRepository postCodeIoRepository;
+
     @InjectMocks
     PostcodeIoService postcodeIoService;
 
     @BeforeEach
     void setUp() {
-        postcodeIoService = new PostcodeIoService(postcodeIoClient, postCodeIoValidator, postCodeResponseConverter);
+        postcodeIoService = new PostcodeIoService(postcodeIoClient, postCodeIoValidator, postCodeResponseConverter, postCodeIoRepository);
     }
 
     @Test

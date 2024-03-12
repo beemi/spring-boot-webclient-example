@@ -2,6 +2,7 @@ package com.jaitechltd.webclientsspringbootexample.exception;
 
 
 import lombok.extern.slf4j.Slf4j;
+import net.sf.jsqlparser.JSQLParserException;
 import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,12 +31,21 @@ public class ControllerErrorAdvice {
 
     @ExceptionHandler({
             Exception.class,
-            RuntimeException.class
+            RuntimeException.class,
+            JSQLParserException.class
     })
     public ResponseEntity<ErrorResponse> handleException(final Exception ex) {
         log.error("An error occurred while processing the request: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR,
                 List.of("An error occurred while processing the request")));
+    }
+
+    @ExceptionHandler({
+            PosstCodeNotFoundException.class
+    })
+    public ResponseEntity<ErrorResponse> handlePosstCodeNotFoundException(final PosstCodeNotFoundException ex) {
+        log.error("Post code not found: {}", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(HttpStatus.NOT_FOUND, List.of(ex.getMessage())));
     }
 
     public record ErrorResponse(HttpStatus status, List<String> message) {

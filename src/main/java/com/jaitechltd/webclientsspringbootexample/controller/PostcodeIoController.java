@@ -11,10 +11,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -41,4 +41,29 @@ public class PostcodeIoController {
         return ResponseEntity.ok(responseDto);
     }
 
+    @GetMapping("/details/{id}")
+    @Operation(summary = "Retrieve stored Postcode details.", description = "Retrieve stored Postcode details.", tags = {"Postcode API"},
+            operationId = "getPostCodeDetails", responses = {
+            @ApiResponse(responseCode = "200", description = "Stored Postcode details.", content = @Content(schema = @Schema(implementation = LocationResponseNewDto.class))),
+            @ApiResponse(responseCode = "404", description = "Postcode details not found.", content = @Content(schema = @Schema(implementation = ControllerErrorAdvice.ErrorResponse.class)))
+    })
+    @Timed(histogram = true)
+    public ResponseEntity<LocationResponseNewDto> getPostCodeDetails(@PathVariable("id") final Long id) {
+        log.info("Received request to get post code details for id: {}", id);
+        Optional<LocationResponseNewDto> postCodeDetails = postcodeIoService.getById(id);
+        return postCodeDetails.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/postCodeDetails")
+    @Operation(summary = "Get post code details from postcode.io", description = "Get post code details from postcode.io", tags = {"Postcode API"},
+            operationId = "postCodeDetails", responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = LocationResponseNewDto.class))),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = ControllerErrorAdvice.ErrorResponse.class)))
+    })
+    @Timed(histogram = true)
+    public ResponseEntity<Optional<List<LocationResponseNewDto>>> postCodeDetails(@RequestParam("postcode") final String postCode) {
+        log.info("Received request to get post code details for postcode: {}", postCode);
+        Optional<List<LocationResponseNewDto>> postCodeDetails = postcodeIoService.getPostCodeDetails(postCode);
+        return ResponseEntity.ok(postCodeDetails);
+    }
 }
