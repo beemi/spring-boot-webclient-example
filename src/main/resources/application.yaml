@@ -50,14 +50,13 @@ spring:
     activate:
       on-profile: "local"
 
-starwars:
-  api:
-    base-url: https://swapi-graphql.netlify.app
+externalservice:
+  postcodeio-api:
+    baseUrl: https://api.postcodes.io
+    token: "test12455"
 
-postcodeIo:
-  api:
-    url: https://api.postcodes.io
-    token: "test1234"
+  starwars-api:
+    baseUrl: https://swapi-graphql.netlify.app
 
 #####################
 #### Dev profile ####
@@ -68,14 +67,14 @@ spring:
     activate:
       on-profile: "dev"
 
-starwars:
-  api:
-    base-url: https://swapi-graphql.netlify.app
+externalservice:
+  postcodeio-api:
+    baseUrl: https://api.postcodes.io
+    token: "test12455"
 
-postcodeIo:
-  api:
-    url: https://api.postcodes.io
-    token: "${POSTCODE_IO_TOKEN}"
+  starwars-api:
+    baseUrl: https://swapi-graphql.netlify.app
+
 
 #####################
 #### Prod profile ####
@@ -86,11 +85,10 @@ spring:
     activate:
       on-profile: "prod"
 
-starwars:
-  api:
-    base-url: https://swapi-graphql.netlify.app
+externalservice:
+  postcodeio-api:
+    baseUrl: https://api.postcodes.io
+    token: "test12455"
 
-postcodeIo:
-  api:
-    url: https://api.postcodes.io
-    token: "${POSTCODE_IO_TOKEN}"
+  starwars-api:
+    baseUrl: https://swapi-graphql.netlify.app

@@ -1,5 +1,6 @@
 package com.jaitechltd.webclientsspringbootexample.config;
 
+import com.jaitechltd.webclientsspringbootexample.config.properties.ExternalApiProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -16,12 +17,11 @@ import reactor.core.publisher.Mono;
 public class WebClientConfig {
 
     public static final int BYTE_COUNT = 1024 * 1024 * 16;
-    @Value("${starwars.api.base-url}")
-    private String starWarsApiUrl;
-    @Value("${postcodeIo.api.url}")
-    private String postcodeIoApiUrl;
-    @Value("${postcodeIo.api.token}")
-    private String postcodeIoApiToken;
+    private final ExternalApiProperties externalApiProperties;
+
+    public WebClientConfig(ExternalApiProperties externalApiProperties) {
+        this.externalApiProperties = externalApiProperties;
+    }
 
     @Bean("postcodeIoWebClient")
     public WebClient postcodeIoWebClient() {
@@ -30,11 +30,11 @@ public class WebClientConfig {
 
         return WebClient.builder()
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultHeader("X-API-KEY", postcodeIoApiToken)
+                .defaultHeader("X-API-KEY", externalApiProperties.getPostCodeIoApi().getToken())
                 .filter(logRequest())
                 .filter(logResponse())
                 .exchangeStrategies(exchangeStrategies)
-                .baseUrl(postcodeIoApiUrl)
+                .baseUrl(externalApiProperties.getPostCodeIoApi().getBaseUrl())
                 .build();
     }
 
@@ -50,7 +50,7 @@ public class WebClientConfig {
                 .filter(logResponse())
                 .exchangeStrategies(exchangeStrategies)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .baseUrl(starWarsApiUrl)
+                .baseUrl(externalApiProperties.getStarWarsApi().getBaseUrl())
                 .build();
     }
 
